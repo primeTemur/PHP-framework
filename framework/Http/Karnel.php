@@ -24,10 +24,9 @@ class Karnel{
             $request->getPathInfo()       
         );
 
-        dd($request->getPathInfo());
-        // Dispatcher::FOUND;
-        [$status,$handler,$vars]=$routeInfo;
+        [$status,[$controller,$method],$vars]=$routeInfo;
 
-        return $handler($vars);
+        return (new $controller())->$method($vars);
+        
     }
 }
